@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RentalCar (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "RentalCar (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

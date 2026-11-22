@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Biểu tượng ứng dụng quản lý cho thuê xe">
+<title>RentalCar</title>
+<defs>
+  <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#1A73D9"/>
+    <stop offset="1" stop-color="#0057B0"/>
+  </linearGradient>
+
+  <!-- Thân xe: khối trắng, khoét kính và hốc bánh bằng mask -->
+  <mask id="carCut" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256">
+    <path fill="#fff" d="M48 166Q42 166 42 158V141Q42 131 52 129L78 124L99 102Q105 96 114 96H150Q160 96 167 102L192 124L207 127Q216 129 216 140V158Q216 166 208 166Z"/>
+    <!-- kính sau / kính trước -->
+    <path fill="#000" d="M87 123L103 107Q107 103 113 103H129V123Z"/>
+    <path fill="#000" d="M136 103H149Q156 103 161 108L176 123H136Z"/>
+    <!-- hốc bánh -->
+    <circle cx="82" cy="166" r="22" fill="#000"/>
+    <circle cx="176" cy="166" r="22" fill="#000"/>
+  </mask>
+</defs>
+
+<!-- Ô nền -->
+<rect x="16" y="16" width="224" height="224" rx="56" fill="url(#tile)"/>
+
+<!-- Vệt tốc độ -->
+<g stroke="#fff" stroke-linecap="round" stroke-width="5">
+  <path d="M26 142H34" opacity=".35"/>
+  <path d="M22 156H36" opacity=".55"/>
+</g>
+
+<g transform="translate(0 12)">
+  <!-- Đường -->
+  <rect x="44" y="183" width="168" height="5" rx="2.5" fill="#fff" opacity=".22"/>
+
+  <!-- Thân xe -->
+  <rect width="256" height="256" fill="#fff" mask="url(#carCut)"/>
+
+  <!-- Đèn -->
+  <rect x="202" y="136" width="10" height="6" rx="3" fill="#FFC83D"/>
+  <rect x="46" y="137" width="6" height="6" rx="3" fill="#FF7A6B"/>
+  <!-- Tay nắm cửa -->
+  <rect x="113" y="134" width="10" height="3.5" rx="1.75" fill="#0057B0" opacity=".35"/>
+  <rect x="146" y="134" width="10" height="3.5" rx="1.75" fill="#0057B0" opacity=".35"/>
+
+  <!-- Bánh xe -->
+  <circle cx="82" cy="166" r="16" fill="#0B2A5B"/>
+  <circle cx="82" cy="166" r="6.5" fill="#fff"/>
+  <circle cx="176" cy="166" r="16" fill="#0B2A5B"/>
+  <circle cx="176" cy="166" r="6.5" fill="#fff"/>
+</g>
+
+<!-- Huy hiệu chìa khóa -->
+<circle cx="188" cy="66" r="26" fill="#FFC83D"/>
+<g transform="translate(189 67) rotate(-45)" fill="none" stroke="#0B2A5B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="-8" cy="0" r="7"/>
+  <path d="M-1 0H15M9 0V6M15 0V5"/>
+</g>
+</svg>

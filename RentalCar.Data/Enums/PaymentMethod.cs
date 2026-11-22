@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RentalCar.Enums
+{
+    public enum PaymentMethod
+    {
+        Cash,          // Tiền mặt
+        BankTransfer,  // Chuyển khoản
+        Card           // Thẻ
+    }
+}
