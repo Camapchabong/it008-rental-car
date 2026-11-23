@@ -14,18 +14,6 @@ using System.Threading.Tasks;
 
 namespace RentalCar.ViewModels
 {
-    public class StaffRowViewModel
-    {
-        private readonly User _user;
-        public StaffRowViewModel(User user) => _user = user;
-
-        public string FullName => _user.FullName;
-        public string Code => $"NV{_user.UserId:000}";          // 1 → NV001
-        public string Account => _user.Account;
-        public string RoleText => _user.Role == UserRole.Admin ? "Admin" : "Nhân viên";
-        public bool IsActive => _user.IsActive;
-        public bool IsLocked => !_user.IsActive;
-    }
 
     public class StaffViewModel : INotifyPropertyChanged
     {
@@ -33,22 +21,45 @@ namespace RentalCar.ViewModels
 
         private readonly IUserService _userService;
 
-        public ObservableCollection<StaffRowViewModel> Staff { get; } = new();
-        public AsyncRelayCommand LoadCommand { get; }
+        public ObservableCollection<User> StaffCollection { get; } = new();
+        public AsyncRelayCommand LoadDataCommand { get; }
 
         public StaffViewModel(IUserService userService)
         {
             _userService = userService;
-            LoadCommand = new AsyncRelayCommand(LoadAsync);
+            LoadDataCommand = new AsyncRelayCommand(LoadDataAsync);
         }
 
         // Lấy danh sách tài khoản từ DB rồi đổ vào bảng
-        private async Task LoadAsync()
+        private async Task LoadDataAsync()
         {
-            var users = await _userService.GetAllAsync();
-            Staff.Clear();
-            foreach (var u in users)
-                Staff.Add(new StaffRowViewModel(u));
+            var users = await _userService.GetAllUsersAsync();
+            StaffCollection.Clear();
+            foreach(var u in users)
+            {
+                StaffCollection.Add(u);
+            }
+        }
+
+        // Update thông tin tài khoản
+        public async Task UpdateUserAsync(int userId, string fullName, UserRole role, bool isActive)
+        {
+            await _userService.UpdateUserAsync(userId, fullName, role, isActive);
+            await LoadDataAsync();
+        }
+
+        // Add new account
+        public async Task AddUserAsync(User newUser)
+        {     
+            await _userService.AddUserAsync(newUser);
+            StaffCollection.Add(newUser);
+        }
+
+        // Change password
+        public async Task ChangePasswordAsync(int userId, string newPassword)
+        {
+            await _userService.ChangePasswordAsync(userId, newPassword);
+            await LoadDataAsync();
         }
 
         protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)

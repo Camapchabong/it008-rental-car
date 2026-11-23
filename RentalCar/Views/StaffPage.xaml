@@ -7,7 +7,7 @@
     xmlns:vm="using:RentalCar.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:controls="using:RentalCar.Controls"
+    xmlns:controls="using:RentalCar.Controls" xmlns:models="using:RentalCar.Models"
     mc:Ignorable="d">
 
     <Grid RowDefinitions="Auto,*" RowSpacing="24">
@@ -24,7 +24,8 @@
 
             <!--Button add account-->
             <Button Grid.Column="1" VerticalAlignment="Center" Height="40" Padding="18 0"
-                    Style="{StaticResource AccentButtonStyle}">
+                    Style="{StaticResource AccentButtonStyle}"
+                    Click="AddUserButton_Click">
                 <StackPanel Orientation="Horizontal" Spacing="10">
                     <FontIcon Glyph="&#xE710;" FontSize="14"/>
                     <TextBlock Text="Thêm tài khoản" FontWeight="SemiBold"/>
@@ -39,10 +40,9 @@
                 BorderThickness="1" CornerRadius="8">
             <Grid RowDefinitions="Auto,*">
 
-                <!--Header-->
+                <!--Header table-->
                 <Grid Grid.Row="0" Padding="20 14" CornerRadius="8 8 0 0"
                       Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}">
-                    <!--Tỉ lệ cột phải giống hệt các dòng bên dưới để thẳng hàng-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="1.5*"/>
@@ -61,11 +61,11 @@
                     <TextBlock Grid.Column="3" Text="Trạng thái"/>
                 </Grid>
 
-                <!--Các dòng-->
+                <!--Row data-->
                 <ScrollViewer Grid.Row="1">
-                    <ItemsControl ItemsSource="{x:Bind ViewModel.Staff}">
+                    <ItemsControl ItemsSource="{x:Bind ViewModel.StaffCollection}">
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate x:DataType="vm:StaffRowViewModel">
+                            <DataTemplate x:DataType="models:User">
                                 <!--1 dòng: kẻ phía trên; rê chuột vào/ra thì gọi hàm bên .xaml.cs
                                     (Background="Transparent" để bắt được chuột trên cả dòng)-->
                                 <Grid Padding="20 14" Background="Transparent"
@@ -82,7 +82,7 @@
                                     <!--Name and Id Staff-->
                                     <StackPanel Grid.Column="0" Spacing="2">
                                         <TextBlock Text="{x:Bind FullName}" FontWeight="SemiBold"/>
-                                        <TextBlock Text="{x:Bind Code}" FontSize="13"
+                                        <TextBlock Text="{x:Bind DisplayUserId}" FontSize="13"
                                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                                     </StackPanel>
 
@@ -107,11 +107,11 @@
                                     <StackPanel x:Name="RowActions" Grid.Column="3" Visibility="Collapsed"
                                                 Orientation="Horizontal" Spacing="4"
                                                 HorizontalAlignment="Right" VerticalAlignment="Center">
-                                        <controls:HandButton x:Name="ChangePassword" Background="Transparent" BorderThickness="0"
+                                        <controls:HandButton x:Name="ChangePassword" Click="ChangePassword_Click" Background="Transparent" BorderThickness="0"
                                                 ToolTipService.ToolTip="Đổi mật khẩu">
                                             <FontIcon Glyph="&#xE8D7;" FontSize="14"/>
                                         </controls:HandButton>
-                                        <controls:HandButton x:Name="EditInfo" Background="Transparent" BorderThickness="0"
+                                        <controls:HandButton x:Name="EditInfo" Click="EditInfo_Click" Background="Transparent" BorderThickness="0"
                                                 ToolTipService.ToolTip="Sửa thông tin">
                                             <FontIcon Glyph="&#xE70F;" FontSize="14"/>
                                         </controls:HandButton>

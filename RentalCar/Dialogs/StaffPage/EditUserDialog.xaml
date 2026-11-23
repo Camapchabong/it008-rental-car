@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="RentalCar.Views.Dialogs.EditUserDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Style="{StaticResource DefaultContentDialogStyle}"
+    CornerRadius="12"
+    BorderThickness="1"
+    BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}"
+    PrimaryButtonText="Lưu thay đổi"
+    CloseButtonText="Hủy"
+    DefaultButton="Primary"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    >
+
+    <ContentDialog.Resources>
+        <!-- Nhãn phía trên mỗi ô nhập: đậm vừa, cỡ 14 -->
+        <DataTemplate x:Key="FieldHeaderTemplate">
+            <TextBlock Text="{Binding}" FontSize="14" FontWeight="SemiBold"
+                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+        </DataTemplate>
+    </ContentDialog.Resources>
+
+    <!-- Tiêu đề + dòng phụ -->
+    <ContentDialog.Title>
+        <StackPanel Spacing="4">
+            <TextBlock Text="Chỉnh sửa tài khoản" FontSize="24" FontWeight="SemiBold"/>
+        </StackPanel>
+    </ContentDialog.Title>
+
+    <Grid Width="480" ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto"
+          ColumnSpacing="16" RowSpacing="20" Margin="0 8 0 0">
+
+        <!-- Hàng 1: Họ tên | Tên đăng nhập -->
+        <TextBox x:Name="FullNameBox" Grid.Row="0" Grid.Column="0"
+                 Header="Họ tên" HeaderTemplate="{StaticResource FieldHeaderTemplate}"
+                 PlaceholderText="Nhập họ tên"/>
+        <TextBox x:Name="AccountBox" Grid.Row="0" Grid.Column="1"
+                 Header="Tên đăng nhập" HeaderTemplate="{StaticResource FieldHeaderTemplate}"
+                 IsReadOnly="True"
+                 Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                 ToolTipService.ToolTip="Tên đăng nhập không thể thay đổi"/>
+
+        <!-- Hàng 2: Vai trò | Trạng thái -->
+        <!-- Thứ tự item phải trùng thứ tự enum UserRole: Admin = 0, Staff = 1 -->
+        <ComboBox x:Name="RoleBox" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch"
+                  Header="Vai trò" HeaderTemplate="{StaticResource FieldHeaderTemplate}">
+            <x:String>Quản trị viên</x:String>
+            <x:String>Nhân viên</x:String>
+        </ComboBox>
+        <ToggleSwitch x:Name="ActiveSwitch" Grid.Row="1" Grid.Column="1"
+                      Header="Trạng thái" HeaderTemplate="{StaticResource FieldHeaderTemplate}"
+                      OnContent="Đang hoạt động" OffContent="Đã khóa"/>
+
+        <!-- Hàng 3: thông báo lỗi -->
+        <InfoBar x:Name="ErrorBar" Grid.Row="2" Grid.ColumnSpan="2"
+                 Severity="Error" IsClosable="False" IsOpen="False"/>
+    </Grid>
+</ContentDialog>

@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace RentalCar.Services.Mocks
 {
-    public class MockUserService 
+    public class MockUserService
     {
+        // Tự tạo dữ liệu mẫu
         public MockUserService() 
         {
             // Code chức năng ở đây

@@ -15,8 +15,7 @@
                     IsPaneToggleButtonVisible="False"
                     SelectionChanged="NavView_SelectionChanged">
 
-        <!--Đầu menu: icon app + tên app. Bỏ nút hamburger để pane luôn mở,
-            logo thẳng cột với icon các mục menu bên dưới-->
+        <!--Đầu menu: icon app + tên app. logo thẳng cột với icon các mục menu bên dưới-->
         <NavigationView.PaneHeader>
             <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Margin="10 14 12 10">
                 <Image Source="ms-appx:///Assets/Square44x44Logo.targetsize-64.png"
@@ -105,7 +104,7 @@
 
         <!--Vùng nội dung: tiêu đề trang + Frame-->
         <Grid RowDefinitions="Auto,*" Padding="24 12 24 24">
-            <TextBlock x:Name="PageTitle" Grid.Row="0" Style="{StaticResource TitleTextBlockStyle}"/>
+            <TextBlock Grid.Row="0" Style="{StaticResource TitleTextBlockStyle}"/>
             <Frame x:Name="ContentFrame" Grid.Row="1" Margin="0 12 0 0"/>
         </Grid>
     </NavigationView>

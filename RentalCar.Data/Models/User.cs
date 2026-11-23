@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RentalCar.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RentalCar.Models
 {
@@ -16,5 +17,14 @@ namespace RentalCar.Models
         public string PasswordHash { get; set; } = string.Empty;  // đã băm kèm salt
         public UserRole Role { get; set; }
         public bool IsActive { get; set; } = true;                // false = bị khóa
+
+        [NotMapped]
+        public string DisplayUserId => $"NV{UserId:000}";          // 1 → NV001
+
+        [NotMapped]
+        public string RoleText => Role == UserRole.Admin ? "Quản trị viên" : "Nhân viên";
+
+        [NotMapped] 
+        public bool IsLocked => !IsActive;
     }
 }

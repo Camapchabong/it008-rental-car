@@ -17,6 +17,9 @@
     <None Remove="Views\ContractsPage.xaml" />
     <None Remove="Views\CustomersPage.xaml" />
     <None Remove="Views\DashboardPage.xaml" />
+    <None Remove="Dialogs\StaffPage\AddUserDialog.xaml" />
+    <None Remove="Dialogs\StaffPage\ChangePasswordDialog.xaml" />
+    <None Remove="Dialogs\StaffPage\EditUserDialog.xaml" />
     <None Remove="Views\LoginPage.xaml" />
     <None Remove="Views\ParkingPage.xaml" />
     <None Remove="Views\PaymentsPage.xaml" />
@@ -69,7 +72,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\NewFolder\" />
-    <Folder Include="Views\Dialogs\" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\ShellPage.xaml">
@@ -125,6 +127,21 @@
 	<ItemGroup>
 		<!-- Chép file .ico ra thư mục chạy để AppWindow.SetIcon tìm thấy (thanh tiêu đề) -->
 		<Content Include="Assets\rentalcar.ico" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Dialogs\StaffPage\EditUserDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Dialogs\StaffPage\AddUserDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Dialogs\StaffPage\ChangePasswordDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\PaymentsPage.xaml">
